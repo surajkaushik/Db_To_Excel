@@ -17,24 +17,32 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.suraj.Excel.model.ExcelModel;
 
 public class UserExcelExporter {
+	//creating variables for Excel
 	private XSSFWorkbook workbook;
     private XSSFSheet sheet;
     private List<ExcelModel> excelData;
     
+    //Construtor for setting Data in excelData variable.
     public UserExcelExporter(List<ExcelModel> excelData) {
 		this.excelData=excelData;
+		//object for workbook is created.
 		workbook = new XSSFWorkbook();
 	}
     
+    // for the Header row in Excel file
     private void writeHeaderLine() {
+    	//Assigned the worksheet name
     	 sheet = workbook.createSheet("UserData");
+    	 //Created row in sheet
     	 Row row = sheet.createRow(0);
     	 CellStyle style = workbook.createCellStyle();
+    	 //Set the font for the row 0 with bold and size 16
     	 XSSFFont font = workbook.createFont();
          font.setBold(true);
          font.setFontHeight(16);
          style.setFont(font);
          
+         //Created all the Title for the required database in excel file
          createCell(row, 0, "Sr. No.", style);      
          createCell(row, 1, "DATE", style);       
          createCell(row, 2, "V Count", style);    
@@ -48,6 +56,7 @@ public class UserExcelExporter {
    
     }
     
+    //This function will create cell with the data received.
     private void createCell(Row row, int columnCount, Object value, CellStyle style) {
         sheet.autoSizeColumn(columnCount);
         Cell cell = row.createCell(columnCount);
@@ -61,18 +70,20 @@ public class UserExcelExporter {
         cell.setCellStyle(style);
     }
     
+    //this function will write the data part in the excel sheet
     private void writeDataLines() {
+    	//set the rowCOunt as 1
         int rowCount = 1;
- 
         CellStyle style = workbook.createCellStyle();
+        //Created font for the data part and gave font size as 14
         XSSFFont font = workbook.createFont();
         font.setFontHeight(14);
         style.setFont(font);
-                 
+        //Iterating over the backend data and writing it to the Excel sheet
         for (ExcelModel user : excelData) {
             Row row = sheet.createRow(rowCount++);
             int columnCount = 0;
-             
+             //Setting data for excel in each column
             createCell(row, columnCount++, user.getSrl(), style);
             createCell(row, columnCount++, user.getDatee().toString(), style);
             createCell(row, columnCount++, user.getV_count(), style);
@@ -83,19 +94,23 @@ public class UserExcelExporter {
             createCell(row, columnCount++, user.getDp_sum(), style);
             createCell(row, columnCount++, user.getLoad_trk(), style);
             createCell(row, columnCount++, user.getLoad_trk_off(), style);
-            
-             
         }
     }
     
+    //This is the main function for calling Header and Data lines.
     public void export(HttpServletResponse response) throws IOException {
+    	//writeHeaderLine function invoked.
         writeHeaderLine();
+        //writeDataLines function invoked.
         writeDataLines();
-         
+         //Returns a ServletOutputStream suitable for writing binary data in the response.
+        //The servlet container does not encode the binary data. 
         ServletOutputStream outputStream = response.getOutputStream();
+        //Data written in Excel file.
         workbook.write(outputStream);
+        //Closed the excel file.
         workbook.close();
-         
+        //Closed output stream. 
         outputStream.close();
          
     }

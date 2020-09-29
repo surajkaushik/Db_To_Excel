@@ -8,6 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table (name="Datasheet")
+//Used To interact with Database.
 public class ExcelEntity {
 	@Id
 	private Integer srl;

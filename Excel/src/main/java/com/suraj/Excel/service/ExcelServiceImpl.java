@@ -18,7 +18,9 @@ public class ExcelServiceImpl implements ExcelService {
 	private ExcelDAO excelDAO;
 	
 	@Override
+	//This getAllData Function will retrieve all the ExcelModel data which is fetched by DAO.
 	public List<ExcelModel> getAllData() {
+		//Calling of DAO function
 		return excelDAO.getAllData();
 	}
 

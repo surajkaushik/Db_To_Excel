@@ -2,6 +2,7 @@ package com.suraj.Excel.model;
 
 import java.time.LocalDate;
 
+//Used To interact with java classes.
 public class ExcelModel {
 	private Integer srl;
 	private LocalDate Datee;
