@@ -6,5 +6,5 @@ import com.suraj.Excel.model.ExcelModel;
 
 
 public interface ExcelService {
-	public List<ExcelModel> getAllData() throws Exception;
+	public List<ExcelModel> getAllData();
 }

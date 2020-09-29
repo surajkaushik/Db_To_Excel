@@ -18,7 +18,7 @@ public class ExcelServiceImpl implements ExcelService {
 	private ExcelDAO excelDAO;
 	
 	@Override
-	public List<ExcelModel> getAllData() throws Exception {
+	public List<ExcelModel> getAllData() {
 		return excelDAO.getAllData();
 	}
 
