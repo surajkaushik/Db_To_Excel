@@ -73,16 +73,16 @@ public class UserExcelExporter {
             Row row = sheet.createRow(rowCount++);
             int columnCount = 0;
              
-            createCell(row, columnCount++, user.getSrl().toString(), style);
+            createCell(row, columnCount++, user.getSrl(), style);
             createCell(row, columnCount++, user.getDatee(), style);
-            createCell(row, columnCount++, user.getV_count().toString(), style);
-            createCell(row, columnCount++, user.getV_sum().toString(), style);
-            createCell(row, columnCount++, user.getDb_cnt().toString(), style);
-            createCell(row, columnCount++, user.getDb_sum().toString(), style);
-            createCell(row, columnCount++, user.getDp_count().toString(), style);
-            createCell(row, columnCount++, user.getDp_sum().toString(), style);
-            createCell(row, columnCount++, user.getLoad_trk().toString(), style);
-            createCell(row, columnCount++, user.getLoad_trk_off().toString(), style);
+            createCell(row, columnCount++, user.getV_count(), style);
+            createCell(row, columnCount++, user.getV_sum(), style);
+            createCell(row, columnCount++, user.getDb_cnt(), style);
+            createCell(row, columnCount++, user.getDb_sum(), style);
+            createCell(row, columnCount++, user.getDp_count(), style);
+            createCell(row, columnCount++, user.getDp_sum(), style);
+            createCell(row, columnCount++, user.getLoad_trk(), style);
+            createCell(row, columnCount++, user.getLoad_trk_off(), style);
             
              
         }
