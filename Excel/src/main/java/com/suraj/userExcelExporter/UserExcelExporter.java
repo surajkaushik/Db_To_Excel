@@ -74,7 +74,7 @@ public class UserExcelExporter {
             int columnCount = 0;
              
             createCell(row, columnCount++, user.getSrl(), style);
-            createCell(row, columnCount++, user.getDatee(), style);
+            createCell(row, columnCount++, user.getDatee().toString(), style);
             createCell(row, columnCount++, user.getV_count(), style);
             createCell(row, columnCount++, user.getV_sum(), style);
             createCell(row, columnCount++, user.getDb_cnt(), style);

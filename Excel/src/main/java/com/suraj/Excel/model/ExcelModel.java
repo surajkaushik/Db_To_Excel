@@ -1,8 +1,10 @@
 package com.suraj.Excel.model;
 
+import java.time.LocalDate;
+
 public class ExcelModel {
 	private Integer srl;
-	private String Datee;
+	private LocalDate Datee;
 	private Integer v_count;
 	private Integer v_sum;
 	private Integer db_cnt;
@@ -17,10 +19,11 @@ public class ExcelModel {
 	public void setSrl(Integer srl) {
 		this.srl = srl;
 	}
-	public String getDatee() {
+	
+	public LocalDate getDatee() {
 		return Datee;
 	}
-	public void setDatee(String datee) {
+	public void setDatee(LocalDate datee) {
 		Datee = datee;
 	}
 	public Integer getV_count() {

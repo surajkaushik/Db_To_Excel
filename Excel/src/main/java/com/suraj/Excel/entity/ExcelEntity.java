@@ -1,5 +1,7 @@
 package com.suraj.Excel.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -9,7 +11,7 @@ import javax.persistence.Table;
 public class ExcelEntity {
 	@Id
 	private Integer srl;
-	private String Datee;
+	private LocalDate Datee;
 	private Integer v_count;
 	private Integer v_sum;
 	private Integer db_cnt;
@@ -24,10 +26,11 @@ public class ExcelEntity {
 	public void setSrl(Integer srl) {
 		this.srl = srl;
 	}
-	public String getDatee() {
+
+	public LocalDate getDatee() {
 		return Datee;
 	}
-	public void setDatee(String datee) {
+	public void setDatee(LocalDate datee) {
 		Datee = datee;
 	}
 	public Integer getV_count() {
