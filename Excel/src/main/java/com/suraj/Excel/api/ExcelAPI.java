@@ -24,7 +24,7 @@ import com.suraj.userExcelExporter.UserExcelExporter;
 
 @CrossOrigin
 @RestController
-@RequestMapping("ExcelAPI")
+//@RequestMapping("ExcelAPI")
 public class ExcelAPI {
 
 	@Autowired
@@ -33,7 +33,7 @@ public class ExcelAPI {
 	@Autowired
 	private Environment environment;
 	
-	@GetMapping(value = "/getAllData")
+	@GetMapping(value = "/getdata")
 	public ResponseEntity<List<ExcelModel>> getAllData() throws Exception{
 		try {
 		List<ExcelModel> allData=service.getAllData();
@@ -45,7 +45,7 @@ public class ExcelAPI {
 		
 	}
 	
-	@GetMapping("/users/export/excel")
+	@GetMapping("/getdata/excel")
     public void exportToExcel(HttpServletResponse response) throws IOException {
         response.setContentType("application/octet-stream");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
