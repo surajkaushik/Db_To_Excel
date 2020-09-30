@@ -43,16 +43,16 @@ public class UserExcelExporter {
          style.setFont(font);
          
          //Created all the Title for the required database in excel file
-         createCell(row, 0, "Sr. No.", style);      
-         createCell(row, 1, "DATE", style);       
-         createCell(row, 2, "V Count", style);    
-         createCell(row, 3, "V SUM ", style);
-         createCell(row, 4, "DB COUNT", style);
-         createCell(row, 5, "DB SUM", style);      
-         createCell(row, 6, "DP COUNT", style);
-         createCell(row, 7, "DP SUM", style);      
-         createCell(row, 8, "LOAD TRK", style);
-         createCell(row, 9, "LOAD RRK OFF", style);
+       //  createCell(row, 0, "Sr. No.", style);      
+         createCell(row, 0, "DATE", style);       
+         createCell(row, 1, "V Count", style);    
+         createCell(row, 2, "V SUM ", style);
+         createCell(row, 3, "DB COUNT", style);
+         createCell(row, 4, "DB SUM", style);      
+         createCell(row, 5, "DP COUNT", style);
+         createCell(row, 6, "DP SUM", style);      
+         createCell(row, 7, "LOAD TRK", style);
+         createCell(row, 8, "LOAD RRK OFF", style);
    
     }
     
@@ -84,7 +84,7 @@ public class UserExcelExporter {
             Row row = sheet.createRow(rowCount++);
             int columnCount = 0;
              //Setting data for excel in each column
-            createCell(row, columnCount++, user.getSrl(), style);
+          //  createCell(row, columnCount++, user.getSrl(), style);
             createCell(row, columnCount++, user.getDatee().toString(), style);
             createCell(row, columnCount++, user.getV_count(), style);
             createCell(row, columnCount++, user.getV_sum(), style);
