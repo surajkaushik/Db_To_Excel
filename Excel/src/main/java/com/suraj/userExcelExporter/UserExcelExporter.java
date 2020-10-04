@@ -13,18 +13,28 @@ import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-
+import com.suraj.Excel.model.DbModel;
+import com.suraj.Excel.model.DpModel;
 import com.suraj.Excel.model.ExcelModel;
+import com.suraj.Excel.model.LoadModel;
+import com.suraj.Excel.model.Vtable_Model;
 
 public class UserExcelExporter {
 	//creating variables for Excel
 	private XSSFWorkbook workbook;
     private XSSFSheet sheet;
-    private List<ExcelModel> excelData;
+    private List<Vtable_Model> excelData;
+    private List<DbModel> dbm;
+    private List<DpModel> dpm;
+    private List<LoadModel> load;
+    
     
     //Construtor for setting Data in excelData variable.
-    public UserExcelExporter(List<ExcelModel> excelData) {
+    public UserExcelExporter(List<Vtable_Model> excelData,List<DbModel> dbm,List<DpModel> dpm,List<LoadModel> load) {
 		this.excelData=excelData;
+		this.dbm=dbm;
+		this.dpm=dpm;
+		this.load=load;
 		//object for workbook is created.
 		workbook = new XSSFWorkbook();
 	}
@@ -80,7 +90,7 @@ public class UserExcelExporter {
         font.setFontHeight(14);
         style.setFont(font);
         //Iterating over the backend data and writing it to the Excel sheet
-        for (ExcelModel user : excelData) {
+        for (Vtable_Model user : excelData) {
             Row row = sheet.createRow(rowCount++);
             int columnCount = 0;
              //Setting data for excel in each column
@@ -88,13 +98,32 @@ public class UserExcelExporter {
             createCell(row, columnCount++, user.getDatee().toString(), style);
             createCell(row, columnCount++, user.getV_count(), style);
             createCell(row, columnCount++, user.getV_sum(), style);
-            createCell(row, columnCount++, user.getDb_cnt(), style);
-            createCell(row, columnCount++, user.getDb_sum(), style);
-            createCell(row, columnCount++, user.getDp_count(), style);
-            createCell(row, columnCount++, user.getDp_sum(), style);
-            createCell(row, columnCount++, user.getLoad_trk(), style);
-            createCell(row, columnCount++, user.getLoad_trk_off(), style);
+//            createCell(row, columnCount++, user.getDb_cnt(), style);
+//            createCell(row, columnCount++, user.getDb_sum(), style);
+//            createCell(row, columnCount++, user.getDp_count(), style);
+//            createCell(row, columnCount++, user.getDp_sum(), style);
+//            createCell(row, columnCount++, user.getLoad_trk(), style);
+//            createCell(row, columnCount++, user.getLoad_trk_off(), style);
         }
+        
+        for(DbModel d:dbm) {
+        	 Row row = sheet.createRow(rowCount++);
+        	 int columnCount = 3;
+        	 createCell(row, columnCount++, d.getDb_cnt(), style);
+        	 createCell(row, columnCount++, d.getDb_sum(), style);
+        }
+        for(DpModel d:dpm) {
+       	 Row row = sheet.createRow(rowCount++);
+       	 int columnCount = 5;
+       	 createCell(row, columnCount++, d.getDp_count(), style);
+       	 createCell(row, columnCount++, d.getDp_sum(), style);
+       }
+       for(LoadModel d:load) {
+          	 Row row = sheet.createRow(rowCount++);
+          	 int columnCount = 7;
+          	 createCell(row, columnCount++, d.getLoad_trk(), style);
+          	 createCell(row, columnCount++, d.getLoad_trk_off(), style);
+          }   
     }
     
     //This is the main function for calling Header and Data lines.
