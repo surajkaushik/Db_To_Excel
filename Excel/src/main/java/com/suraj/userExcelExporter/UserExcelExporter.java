@@ -42,7 +42,25 @@ public class UserExcelExporter {
     // for the Header row in Excel file
     private void writeHeaderLine() {
     	//Assigned the worksheet name
-    	 sheet = workbook.createSheet("UserData");
+    	 sheet = workbook.createSheet("V_DATA");
+    	 //Created row in sheet
+    	 Row row = sheet.createRow(0);
+    	 CellStyle style = workbook.createCellStyle();
+    	 //Set the font for the row 0 with bold and size 16
+    	 XSSFFont font = workbook.createFont();
+         font.setBold(true);
+         font.setFontHeight(16);
+         style.setFont(font);
+         
+         //Created all the Title for the required database in excel file     
+         createCell(row, 0, "DATE", style);       
+         createCell(row, 1, "V Count", style);    
+         createCell(row, 2, "V SUM ", style);
+    }
+    
+    private void writeHeaderLine1() {
+    	//Assigned the worksheet name
+    	 sheet = workbook.createSheet("DB_DATA");
     	 //Created row in sheet
     	 Row row = sheet.createRow(0);
     	 CellStyle style = workbook.createCellStyle();
@@ -53,19 +71,48 @@ public class UserExcelExporter {
          style.setFont(font);
          
          //Created all the Title for the required database in excel file
-       //  createCell(row, 0, "Sr. No.", style);      
          createCell(row, 0, "DATE", style);       
-         createCell(row, 1, "V Count", style);    
-         createCell(row, 2, "V SUM ", style);
-         createCell(row, 3, "DB COUNT", style);
-         createCell(row, 4, "DB SUM", style);      
-         createCell(row, 5, "DP COUNT", style);
-         createCell(row, 6, "DP SUM", style);      
-         createCell(row, 7, "LOAD TRK", style);
-         createCell(row, 8, "LOAD RRK OFF", style);
-   
+         createCell(row, 1, "DB COUNT", style);
+         createCell(row, 2, "DB SUM", style);      
     }
     
+    private void writeHeaderLine2() {
+    	//Assigned the worksheet name
+    	 sheet = workbook.createSheet("DP_DATA");
+    	 //Created row in sheet
+    	 Row row = sheet.createRow(0);
+    	 CellStyle style = workbook.createCellStyle();
+    	 //Set the font for the row 0 with bold and size 16
+    	 XSSFFont font = workbook.createFont();
+         font.setBold(true);
+         font.setFontHeight(16);
+         style.setFont(font);
+         
+         //Created all the Title for the required database in excel file    
+         createCell(row, 0, "DATE", style);       
+         createCell(row, 1, "DP COUNT", style);
+         createCell(row, 2, "DP SUM", style);      
+ 
+    }
+    private void writeHeaderLine3() {
+    	//Assigned the worksheet name
+    	 sheet = workbook.createSheet("LOAD_DATA");
+    	 //Created row in sheet
+    	 Row row = sheet.createRow(0);
+    	 CellStyle style = workbook.createCellStyle();
+    	 //Set the font for the row 0 with bold and size 16
+    	 XSSFFont font = workbook.createFont();
+         font.setBold(true);
+         font.setFontHeight(16);
+         style.setFont(font);
+         
+         //Created all the Title for the required database in excel file
+         createCell(row, 0, "DATE", style);       
+         createCell(row, 1, "LOAD TRK", style);
+         createCell(row, 2, "LOAD RRK OFF", style);
+   
+    }
+
     //This function will create cell with the data received.
     private void createCell(Row row, int columnCount, Object value, CellStyle style) {
         sheet.autoSizeColumn(columnCount);
@@ -94,33 +141,77 @@ public class UserExcelExporter {
             Row row = sheet.createRow(rowCount++);
             int columnCount = 0;
              //Setting data for excel in each column
-          //  createCell(row, columnCount++, user.getSrl(), style);
             createCell(row, columnCount++, user.getDatee().toString(), style);
             createCell(row, columnCount++, user.getV_count(), style);
             createCell(row, columnCount++, user.getV_sum(), style);
-//            createCell(row, columnCount++, user.getDb_cnt(), style);
-//            createCell(row, columnCount++, user.getDb_sum(), style);
-//            createCell(row, columnCount++, user.getDp_count(), style);
-//            createCell(row, columnCount++, user.getDp_sum(), style);
-//            createCell(row, columnCount++, user.getLoad_trk(), style);
-//            createCell(row, columnCount++, user.getLoad_trk_off(), style);
         }
         
+//        for(DpModel d:dpm) {
+//       	 Row row = sheet.createRow(rowCount++);
+//       	 int columnCount = 5;
+//       	 createCell(row, columnCount++, d.getDp_count(), style);
+//       	 createCell(row, columnCount++, d.getDp_sum(), style);
+//       }
+//       for(LoadModel d:load) {
+//          	 Row row = sheet.createRow(rowCount++);
+//          	 int columnCount = 7;
+//          	 createCell(row, columnCount++, d.getLoad_trk(), style);
+//          	 createCell(row, columnCount++, d.getLoad_trk_off(), style);
+//          }   
+    }
+    private void writeDataLines1() {
+    	//set the rowCOunt as 1
+        int rowCount = 1;
+        CellStyle style = workbook.createCellStyle();
+        //Created font for the data part and gave font size as 14
+        XSSFFont font = workbook.createFont();
+        font.setFontHeight(14);
+        style.setFont(font);
+        //Iterating over the backend data and writing it to the Excel sheet
         for(DbModel d:dbm) {
         	 Row row = sheet.createRow(rowCount++);
-        	 int columnCount = 3;
+        	 int columnCount = 0;
+        	 createCell(row, columnCount++, d.getDatee().toString(), style);
         	 createCell(row, columnCount++, d.getDb_cnt(), style);
         	 createCell(row, columnCount++, d.getDb_sum(), style);
         }
+     
+    }
+    
+    private void writeDataLines2() {
+    	//set the rowCOunt as 1
+        int rowCount = 1;
+        CellStyle style = workbook.createCellStyle();
+        //Created font for the data part and gave font size as 14
+        XSSFFont font = workbook.createFont();
+        font.setFontHeight(14);
+        style.setFont(font);
+        //Iterating over the backend data and writing it to the Excel sheet
+        
         for(DpModel d:dpm) {
        	 Row row = sheet.createRow(rowCount++);
-       	 int columnCount = 5;
+       	 int columnCount = 0;
+      	 createCell(row, columnCount++, d.getDatee().toString(), style);
        	 createCell(row, columnCount++, d.getDp_count(), style);
        	 createCell(row, columnCount++, d.getDp_sum(), style);
        }
+
+    }
+    
+    private void writeDataLines3() {
+    	//set the rowCOunt as 1
+        int rowCount = 1;
+        CellStyle style = workbook.createCellStyle();
+        //Created font for the data part and gave font size as 14
+        XSSFFont font = workbook.createFont();
+        font.setFontHeight(14);
+        style.setFont(font);
+        //Iterating over the backend data and writing it to the Excel sheet
+ 
        for(LoadModel d:load) {
           	 Row row = sheet.createRow(rowCount++);
-          	 int columnCount = 7;
+          	 int columnCount = 0;
+          	 createCell(row, columnCount++, d.getDatee().toString(), style);
           	 createCell(row, columnCount++, d.getLoad_trk(), style);
           	 createCell(row, columnCount++, d.getLoad_trk_off(), style);
           }   
@@ -132,6 +223,13 @@ public class UserExcelExporter {
         writeHeaderLine();
         //writeDataLines function invoked.
         writeDataLines();
+        
+        writeHeaderLine1();
+        writeDataLines1();
+        writeHeaderLine2();
+        writeDataLines2();
+        writeHeaderLine3();
+        writeDataLines3();
          //Returns a ServletOutputStream suitable for writing binary data in the response.
         //The servlet container does not encode the binary data. 
         ServletOutputStream outputStream = response.getOutputStream();

@@ -59,7 +59,7 @@ public class ExcelDAOImpl implements ExcelDAO{
 	public List<Vtable_Model> getAllVTable() {
 		List<Vtable_Model> listOfData= new ArrayList<Vtable_Model>();
 		//System.out.println("Inside Dao");
-		Query q=entityManager.createQuery("SELECT v FROM Vtable v where v.datee BETWEEN trunc(sysdate-7) AND trunc(sysdate)");
+		Query q=entityManager.createQuery("SELECT v FROM Vtable v where v.datee BETWEEN trunc(sysdate-7) AND trunc(sysdate) ORDER BY v.datee ASC");
 		//System.out.println("After Query in dAO");
 		List<Vtable> receivedList=q.getResultList();
 		for (Vtable vtable : receivedList) {
@@ -78,7 +78,7 @@ public class ExcelDAOImpl implements ExcelDAO{
 	public List<DbModel> getAllDb() {
 		List<DbModel> listOfData= new ArrayList<DbModel>();
 		//System.out.println("Inside Dao");
-		Query q=entityManager.createQuery("SELECT v FROM Db v where v.datee BETWEEN trunc(sysdate-7) AND trunc(sysdate)");
+		Query q=entityManager.createQuery("SELECT v FROM Db v where v.datee BETWEEN trunc(sysdate-7) AND trunc(sysdate) ORDER BY v.datee ASC");
 		//System.out.println("After Query in dAO");
 		List<Db> receivedList=q.getResultList();
 		for (Db db : receivedList) {
@@ -96,7 +96,7 @@ public class ExcelDAOImpl implements ExcelDAO{
 	public List<DpModel> getAllDp() {
 		List<DpModel> listOfData= new ArrayList<DpModel>();
 		//System.out.println("Inside Dao");
-		Query q=entityManager.createQuery("SELECT v FROM Dp v where v.datee BETWEEN trunc(sysdate-7) AND trunc(sysdate)");
+		Query q=entityManager.createQuery("SELECT v FROM Dp v where v.datee BETWEEN trunc(sysdate-7) AND trunc(sysdate) ORDER BY v.datee ASC");
 		//System.out.println("After Query in dAO");
 		List<Dp> receivedList=q.getResultList();
 		for (Dp dp : receivedList) {
@@ -114,7 +114,7 @@ public class ExcelDAOImpl implements ExcelDAO{
 	public List<LoadModel> getAllLoad() {
 		List<LoadModel> listOfData= new ArrayList<LoadModel>();
 		//System.out.println("Inside Dao");
-		Query q=entityManager.createQuery("SELECT v FROM Load v where v.datee BETWEEN trunc(sysdate-7) AND trunc(sysdate)");
+		Query q=entityManager.createQuery("SELECT v FROM Load v where v.datee BETWEEN trunc(sysdate-7) AND trunc(sysdate) ORDER BY v.datee ASC");
 		//System.out.println("After Query in dAO");
 		List<Load> receivedList=q.getResultList();
 		for (Load load : receivedList) {
