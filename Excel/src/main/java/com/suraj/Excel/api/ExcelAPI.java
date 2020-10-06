@@ -37,6 +37,20 @@ public class ExcelAPI {
 	@Autowired
 	private Environment environment;
 
+	@GetMapping(value = "/getdata")
+	public ResponseEntity<List<ExcelModel>> getAllData() throws Exception{
+		try {
+		//this statement is fetching data from database using service class.
+		List<ExcelModel> allData=service.getAllData();
+		//this statement is returning the Database Data to the webpage.
+		return new ResponseEntity<List<ExcelModel>>(allData, HttpStatus.OK);
+		}
+		catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+		
+	}
+	
 	//URL to be used for view data on webpage: http://localhost:4444/getdata/
 	@GetMapping(value = "/vtable")
 	public ResponseEntity<List<Vtable_Model>> getAllVTable() throws Exception{
@@ -99,7 +113,7 @@ public class ExcelAPI {
 	}
 	
 	//URL to be used for downloading Excel file: http://localhost:4444/getdata/excel
-	@GetMapping("/excel")
+	@GetMapping("/excelold")
     public void exportToExcel(HttpServletResponse response) throws IOException {
         response.setContentType("application/octet-stream");
         //Set date and time format for file name.
@@ -116,6 +130,24 @@ public class ExcelAPI {
         List<DpModel> dp=service.getAllDp();
         List<LoadModel> load=service.getAllLoad();
         UserExcelExporter excelExporter = new UserExcelExporter(excelData,db,dp,load);
+        //Called UserExcelExporter class for downloading Excel file.
+        excelExporter.export(response);    
+    }  
+	
+	@GetMapping("/excel")
+    public void exportToExcel1(HttpServletResponse response) throws IOException {
+        response.setContentType("application/octet-stream");
+        //Set date and time format for file name.
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        //Got the current Date and Timestamp.
+        String currentDateTime = dateFormatter.format(new Date());
+        String headerKey = "Content-Disposition";
+        //Set the File name as users_ then date and time with xlsx file extension.
+        String headerValue = "attachment; filename=users_" + currentDateTime + ".xlsx";
+        response.setHeader(headerKey, headerValue);
+      //this statement is fetching data from database using service class.
+        List<ExcelModel> excelData = service.getAllData();
+        UserExcelExporter excelExporter = new UserExcelExporter(excelData);
         //Called UserExcelExporter class for downloading Excel file.
         excelExporter.export(response);    
     }  

@@ -11,8 +11,7 @@ import javax.persistence.Table;
 //Used To interact with Database.
 public class ExcelEntity {
 	@Id
-	private Integer srl;
-	private LocalDate Datee;
+	private LocalDate datee;
 	private Integer v_count;
 	private Integer v_sum;
 	private Integer db_cnt;
@@ -21,18 +20,12 @@ public class ExcelEntity {
 	private Integer dp_sum;
 	private Integer load_trk;
 	private Integer load_trk_off;
-	public Integer getSrl() {
-		return srl;
-	}
-	public void setSrl(Integer srl) {
-		this.srl = srl;
-	}
-
+	
 	public LocalDate getDatee() {
-		return Datee;
+		return datee;
 	}
 	public void setDatee(LocalDate datee) {
-		Datee = datee;
+		this.datee = datee;
 	}
 	public Integer getV_count() {
 		return v_count;

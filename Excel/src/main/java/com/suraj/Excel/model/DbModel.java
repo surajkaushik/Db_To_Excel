@@ -3,16 +3,11 @@ package com.suraj.Excel.model;
 import java.time.LocalDate;
 
 public class DbModel {
-	private Integer db_id;
+	
 	private LocalDate datee;
 	private Integer db_cnt;
 	private Integer db_sum;
-	public Integer getDb_id() {
-		return db_id;
-	}
-	public void setDb_id(Integer db_id) {
-		this.db_id = db_id;
-	}
+	
 	public LocalDate getDatee() {
 		return datee;
 	}

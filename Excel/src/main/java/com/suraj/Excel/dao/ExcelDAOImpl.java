@@ -1,5 +1,6 @@
 package com.suraj.Excel.dao;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,25 +31,30 @@ public class ExcelDAOImpl implements ExcelDAO{
 		//creating an Empty list
 		List<ExcelModel> listOfData= new ArrayList<ExcelModel>();
 		//JPA query for fetching Oracle database data 
-		Query q=entityManager.createQuery("SELECT p FROM ExcelEntity p");
+		Query q=entityManager.createQuery("SELECT t1.datee,t1.v_count,t1.v_sum,t2.db_cnt,t2.db_sum,t3.dp_count,t3.dp_sum,t4.load_trk,t4.load_trk_off FROM Vtable t1 inner join Db t2 on t1.datee=t2.datee INNER JOIN Dp t3 ON t2.datee=t3.datee INNER JOIN Load t4 ON t3.datee=t4.datee where t1.datee BETWEEN trunc(sysdate-7) AND trunc(sysdate)");
 		//Storing the fetching Entity results in ReceviedList
-		List<ExcelEntity> receivedList=q.getResultList();
+		System.out.println("Query Excuted");
+		List<Object[]> receivedList=q.getResultList();
+		
+		System.out.println("After Getting data in the list");
 		//Iterating over the Entity(receivedList) and converting it to model
-		for (ExcelEntity excelEntity : receivedList) {
+		
+		for (Object[] excelEntity : receivedList) {
 			//Object as Model class is created
 			ExcelModel excel = new ExcelModel();
+	
 			//Setting data in model class from Entity Class
-			excel.setSrl(excelEntity.getSrl());
-			excel.setDatee(excelEntity.getDatee());
-			excel.setDb_cnt(excelEntity.getDb_cnt());
-			excel.setDb_sum(excelEntity.getDb_sum());
-			excel.setDp_count(excelEntity.getDp_count());
-			excel.setDp_sum(excelEntity.getDp_sum());
-			excel.setLoad_trk(excelEntity.getLoad_trk());
-			excel.setLoad_trk_off(excelEntity.getLoad_trk_off());
-			excel.setV_count(excelEntity.getV_count());
-			excel.setV_sum(excelEntity.getV_sum());
+			excel.setDatee((LocalDate)excelEntity[0]);
+			excel.setDb_cnt((Integer)excelEntity[3]);
+			excel.setDb_sum((Integer)excelEntity[4]);
+			excel.setDp_count((Integer)excelEntity[5]);
+			excel.setDp_sum((Integer)excelEntity[6]);
+			excel.setLoad_trk((Integer)excelEntity[7]);
+			excel.setLoad_trk_off((Integer)excelEntity[8]);
+			excel.setV_count((Integer)excelEntity[1]);
+			excel.setV_sum((Integer)excelEntity[2]);
 			//Adding all the Model class data in the list.
+			
 			listOfData.add(excel);
 		}
 		//Returning the fetched data from backend.
@@ -64,7 +70,6 @@ public class ExcelDAOImpl implements ExcelDAO{
 		List<Vtable> receivedList=q.getResultList();
 		for (Vtable vtable : receivedList) {
 			Vtable_Model v=new Vtable_Model();
-			v.setV_id(vtable.getV_id());
 			v.setDatee(vtable.getDatee());
 			v.setV_count(vtable.getV_count());
 			v.setV_sum(vtable.getV_sum());
@@ -85,7 +90,6 @@ public class ExcelDAOImpl implements ExcelDAO{
 			DbModel dbmodel=new DbModel();
 			dbmodel.setDatee(db.getDatee());
 			dbmodel.setDb_cnt(db.getDb_cnt());
-			dbmodel.setDb_id(db.getDb_id());
 			dbmodel.setDb_sum(db.getDb_sum());
 			listOfData.add(dbmodel);
 		}
@@ -103,7 +107,6 @@ public class ExcelDAOImpl implements ExcelDAO{
 			DpModel dpmodel=new DpModel();
 			dpmodel.setDatee(dp.getDatee());
 			dpmodel.setDp_count(dp.getDp_count());
-			dpmodel.setDp_id(dp.getDp_id());
 			dpmodel.setDp_sum(dp.getDp_sum());
 			listOfData.add(dpmodel);
 		}
@@ -120,7 +123,6 @@ public class ExcelDAOImpl implements ExcelDAO{
 		for (Load load : receivedList) {
 			LoadModel loadmodel=new LoadModel();
 			loadmodel.setDatee(load.getDatee());
-			loadmodel.setLoad_id(load.getLoad_id());
 			loadmodel.setLoad_trk(load.getLoad_trk());
 			loadmodel.setLoad_trk_off(load.getLoad_trk_off());
 			listOfData.add(loadmodel);

@@ -7,18 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 public class Vtable_Model {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer v_id;
+	
 	private LocalDate datee;
 	private Integer v_count;
 	private Integer v_sum;
-	public Integer getV_id() {
-		return v_id;
-	}
-	public void setV_id(Integer v_id) {
-		this.v_id = v_id;
-	}
 	public LocalDate getDatee() {
 		return datee;
 	}

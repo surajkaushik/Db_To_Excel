@@ -14,16 +14,9 @@ import javax.persistence.Table;
 public class Dp {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer dp_id;
 	private LocalDate datee;
 	private Integer dp_count;
 	private Integer dp_sum;
-	public Integer getDp_id() {
-		return dp_id;
-	}
-	public void setDp_id(Integer dp_id) {
-		this.dp_id = dp_id;
-	}
 	public LocalDate getDatee() {
 		return datee;
 	}

@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 //Used To interact with java classes.
 public class ExcelModel {
-	private Integer srl;
-	private LocalDate Datee;
+	
+	private LocalDate datee;
 	private Integer v_count;
 	private Integer v_sum;
 	private Integer db_cnt;
@@ -14,18 +14,12 @@ public class ExcelModel {
 	private Integer dp_sum;
 	private Integer load_trk;
 	private Integer load_trk_off;
-	public Integer getSrl() {
-		return srl;
-	}
-	public void setSrl(Integer srl) {
-		this.srl = srl;
-	}
 	
 	public LocalDate getDatee() {
-		return Datee;
+		return datee;
 	}
 	public void setDatee(LocalDate datee) {
-		Datee = datee;
+		this.datee = datee;
 	}
 	public Integer getV_count() {
 		return v_count;

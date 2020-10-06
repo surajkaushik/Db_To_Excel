@@ -14,17 +14,10 @@ import javax.persistence.Table;
 public class Load {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer load_id;
 	private LocalDate datee;
 	private Integer load_trk;
 	private Integer load_trk_off;
-	public Integer getLoad_id() {
-		return load_id;
-	}
-	public void setLoad_id(Integer load_id) {
-		this.load_id = load_id;
-	}
-	public LocalDate getDatee() {
+		public LocalDate getDatee() {
 		return datee;
 	}
 	public void setDatee(LocalDate datee) {
